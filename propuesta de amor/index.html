@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Para você, meu amor 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* CONTENEDOR */
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+/* BOTONES */
+button {
+    margin: 10px;
+    padding: 12px 20px;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+}
+
+button:hover {
+    background: #ff1e4d;
+}
+
+/* CORAZONES */
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: subir 2s linear forwards;
+}
+
+@keyframes subir {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-200px); opacity: 0; }
+}
+
+/* PANTALLA FINAL */
+#final {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+#final img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* TEXTO GRANDE */
+.texto-final {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    font-family: 'Brush Script MT', cursive;
+    text-shadow: 0 0 20px black;
+    padding: 20px;
+    max-height: 90%;
+    overflow-y: auto;
+}
+</style>
+
+</head>
+<body>
+
+<!-- AUDIO -->
+<audio id="som">
+    <source src="amor.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PANTALLA INICIAL -->
+<div class="container" id="main">
+    <h2>Meu amor 💖</h2>
+    <p>Você é a coisa mais linda que aconteceu na minha vida ✨</p>
+
+    <h2>Você quer ser minha namorada? 💍</h2>
+
+    <button onmouseover="corazones(event)" onclick="aceitar()">Sim 💖</button>
+    <button id="noBtn" onmouseover="mover()" onclick="rechazar()">Não 😞</button>
+</div>
+
+<!-- PANTALLA FINAL -->
+<div id="final">
+    <img src="stitch.png.jpg" >
+    <div class="texto-final">
+
+Amor… hoje eu não quero falar só com palavras bonitas, hoje eu quero falar com a alma completamente aberta, com o coração nas mãos e com cada batida dizendo o seu nome… porque desde aquele momento em que você disse sim, algo dentro de mim mudou para sempre, algo se encaixou, algo encontrou o seu lugar… e esse lugar é você.
+
+Eu sabia… lá no fundo eu sabia. Sabia que o que a gente sentia não era por acaso, não era algo passageiro… era algo que crescia em silêncio, que ficava mais forte a cada olhar, a cada palavra, a cada momento que a gente compartilhava sem perceber o quanto isso estava ficando grande. Eu sabia que o seu coração e o meu estavam caminhando para o mesmo lugar… e hoje finalmente se encontraram.
+
+E agora que somos nós… agora que não existem dúvidas, nem medos… eu sinto uma paz que nunca senti antes. Uma felicidade que não depende de nada além de saber que você está comigo, que você me escolheu… e isso, meu amor, vale mais do que qualquer coisa nesse mundo.
+
+Quero que você entenda algo muito importante… esse “sim” que você me deu não é só uma palavra para mim. É uma promessa, é um começo, é algo que eu vou cuidar todos os dias da minha vida.
+
+Quero ser o abraço onde você encontra paz… o seu apoio, a sua alegria e o seu refúgio.
+
+Porque você não chegou na minha vida por acaso… você é o amor mais grande que o meu coração já conheceu.
+
+Eu te amo… com tudo o que eu sou 💖
+
+    </div>
+</div>
+
+<script>
+
+// CORAZONES
+function corazones(e) {
+    for (let i = 0; i < 5; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+
+        heart.style.left = e.clientX + "px";
+        heart.style.top = e.clientY + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 2000);
+    }
+}
+
+// CLICK EN SI
+function aceitar() {
+    document.getElementById("som").play();
+    document.getElementById("main").style.display = "none";
+    document.getElementById("final").style.display = "block";
+}
+
+// BOTÓN NO QUE HUYE
+function mover() {
+    let btn = document.getElementById("noBtn");
+    let x = Math.random() * 300 - 150;
+    let y = Math.random() * 300 - 150;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// CLICK EN NO
+function rechazar() {
+    alert("😞");
+}
+
+// CORAZONES EN PANTALLA FINAL
+document.addEventListener("mousemove", function(e) {
+    if (document.getElementById("final").style.display === "block") {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+
+        heart.style.left = e.clientX + "px";
+        heart.style.top = e.clientY + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 2000);
+    }
+});
+
+</script>
+
+</body>
+</html>
